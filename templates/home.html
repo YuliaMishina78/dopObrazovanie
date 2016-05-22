@@ -19,176 +19,14 @@
             crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-            $("#slider-range").slider({
-                range: true,
-                min: 300,
-                max: 3000,
-                values: [500, 1000],
-                slide: function (event, ui) {
-                    $("#price-from").val(ui.values[0]);
-                    $("#price-to").val(ui.values[1]);
-                }
-            });
-
-            /// Вывод в текстовое поле
-            /*$("#amount").val("" + $("#slider-range").slider("values", 0) +
-             " - " + $("#slider-range").slider("values", 1));*/
-
-            $("#price-from").keyup(function () {
-                $("#slider-range").slider("values", 0, $("#price-from").val());
-            });
-
-            $("#price-to").keyup(function () {
-                $("#slider-range").slider("values", 1, $("#price-to").val());
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{% static "js/home_head.js" %}"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Kurale&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet'
           type='text/css'>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
 
     <title>Система выбора преподавателей</title>
-    <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
-        .navbar {
-            margin-bottom: 0;
-            border-radius: 0;
-
-        }
-
-        /* Move down content because we have a fixed navbar that is 50px tall */
-        body {
-            padding-top: 50px;
-            padding-bottom: 20px;
-        }
-
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {
-            height: 450px
-        }
-
-        /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            height: 100%;
-        }
-
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
-
-            .row.content {
-                height: auto;
-            }
-        }
-
-        .dropdown-menu {
-            border-color: #000;
-        }
-
-        table {
-            border-collapse: collapse;
-            border: 2px black solid;
-            font: 12px sans-serif;
-        }
-
-        td {
-            border: 1px black solid;
-            text-align: left !important;
-        <!-- padding: 5 px;
-        --> <!-- border: none !important;
-        -->
-        }
-
-        .sort {
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .btn-default {
-
-        }
-
-        .sort-btn {
-            display: inline-block;
-            padding-left: 15px;
-        }
-
-        .btn-group {
-            min-width: 160px;
-            /*max-width: 160px;*/
-
-        }
-
-        .btn-where {
-
-        }
-
-        body {
-            font-family: 'Kurale', serif;
-        }
-
-        .jumbotron {
-            /*font-family: 'Marck Script', cursive;*/
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-
-        .jumbotron .container {
-            padding-top: 5px;
-            padding-bottom: 10px;
-        }
-
-        .table {
-            font-family: 'Helvetica', sans-serif;
-            font-weight: 400;
-            /*font-size: small;*/
-
-        }
-
-        .theadClass {
-            background-color: #F0F0F0;
-            /*text-align: center !important;*/
-        }
-
-        label {
-            font-weight: 400;
-        }
-
-        .sorttext {
-            padding-right: 10px;
-            font-size: 110%;
-        }
-
-        .form-control {
-            border-radius: 4px !important;
-            align: center;
-        }
-
-        .row {
-
-        }
-
-        .amount {
-            text-align: center;
-        }
-
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -222,59 +60,40 @@
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <div class="filter-btn">
-                <div class="btn-group-vertical" role="group" aria-label="...">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspop="true" aria-expanded="false">
-                            Предмет
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Английский язык</a></li>
-                            <li><a href="#">Математика</a></li>
-                            <li><a href="#">Русский язык</a></li>
-                            <li><a href="#">Информатика</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <p></p>
-            <div class="btn-group-vertical" role="group" aria-label="...">
-                <div class="btn-group btn-group-justified" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspop="true" aria-expanded="false">
-                        Район
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Все</a></li>
-                        <li><a href="#">Автово</a></li>
-                        <li><a href="#">Адмиралтейская</a></li>
-                        <li><a href="#">Академическая</a></li>
-                        <li><a href="#">Балтийская</a></li>
-                        <li><a href="#">Бухарестская</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <p>
-            <div class="btn-group-vertical" role="group" aria-label="...">
-                <div class="btn-group btn-group-justified" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            aria-haspop="true" aria-expanded="false">
-                        Место проведения занятий
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">У себя</a></li>
-                        <li><a href="#">У преподавателя</a></li>
-                        <li><a href="#">Удалённо</a></li>
-                    </ul>
-                </div>
-
+                <div style="text-align:left !important">Предмет:</div>
+                </p>
+                <select class="form-control" id="subject">
+                    <option>Английский язык</option>
+                    <option>Математика</option>
+                    <option>Русский язык</option>
+                    <option>Информатика</option>
+                </select>
             </div>
             </p>
-            <label for="amount">Стоимость занятия:</label>
+            <div class="filter-btn">
+                <div style="text-align:left !important">Район:</div>
+                </p>
+                <select class="form-control" id="metro">
+                    <option>Все</option>
+                    <option>Автово</option>
+                    <option>Адмиралтейская</option>
+                    <option>Академическая</option>
+                    <option>Балтийская</option>
+                    <option>Бухарестская</option>
+                </select>
+            </div>
+            </p>
+                <div class="filter-btn">
+                        <div style="text-align: left !important">Место проведения занятий:</div>
+            </p>
+                    <select class="form-control" id="metro">
+                        <option onclick="filter_place('у себя')"><a href="#">У себя</a></option>
+                        <option onclick="filter_place('выезд на дом')"><a href="#">Выезд на дом</a></option>
+                        <option onclick="filter_place('удаленно')"><a href="#">Удалённо</a></option>
+                    </select>
+                </div>
+            </p>
+            <div style="text-align: left !important">Стоимость занятия:</div>
             <!--<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
             </p>
 
@@ -301,13 +120,13 @@
             <div class="sort">
                 <span class="sorttext">Сортировать по:</span>
                 <div class="radio-inline">
-                    <label><input type="radio" name="optradio">Оценка системы</label>
+                    <label onclick="SortTeachers('Funct')"><input type="radio" name="optradio">Оценка системы</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="optradio">Рейтинг</label>
+                    <label onclick="SortTeachers('Rating')"><input type="radio" name="optradio">Рейтинг</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="optradio">Отзывы</label>
+                    <label onclick="SortTeachers('Feedback')"><input type="radio" name="optradio">Отзывы</label>
                 </div>
                 <div class="sort-btn">
                     <button type="button" class="btn btn-default btn-xs">
@@ -317,7 +136,7 @@
             </div>
             <br>
             {% if teachers %}
-                <div class="panel panel-default">
+                <div class="panel panel-default" id="teachers">
                     <table class="table table-bordered table-hover table-striped">
                         <tbody>
                         {% for teacher in teachers %}
@@ -392,52 +211,6 @@
 <footer class="container-fluid text-center">
     <p>2016</p>
 </footer>
-<script type="text/javascript">
-    function add_to_favorites(id) {
-        $.ajax({
-            type: 'POST',
-            url: '/',
-            data: {
-                "TeacherID": id,
-                "csrfmiddlewaretoken": csrf,
-                "operationType": "add"
-            },
-            success: function (data) {
-                if (data.status == 0) {
-                    $.get("/", function (data, status) {
-                        $('#favorites').html($('#favorites', data).html());
-                    });
-                }
-            },
-            error: function (xhr, status, err) {
-            },
-            complete: function (xhr, status) {
-            }
-        });
-    }
-
-    $(document).ready(function () {
-        function getCookie(c_name) {
-            if (document.cookie.length > 0) {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1) {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1) c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start, c_end));
-                }
-            }
-            return "";
-        }
-
-        $(function () {
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRFToken": getCookie("csrftoken")
-                }
-            });
-        });
-    });
-</script>
+<script type="text/javascript" src="{% static "js/home_body.js" %}"></script>
 </body>
 </html>
