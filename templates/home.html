@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <!-- meta first -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">var csrf = "{{ csrf_token }}";</script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+            integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 300,
+                max: 3000,
+                values: [500, 1000],
+                slide: function (event, ui) {
+                    $("#price-from").val(ui.values[0]);
+                    $("#price-to").val(ui.values[1]);
+                }
+            });
+
+            /// Вывод в текстовое поле
+            /*$("#amount").val("" + $("#slider-range").slider("values", 0) +
+             " - " + $("#slider-range").slider("values", 1));*/
+
+            $("#price-from").keyup(function () {
+                $("#slider-range").slider("values", 0, $("#price-from").val());
+            });
+
+            $("#price-to").keyup(function () {
+                $("#slider-range").slider("values", 1, $("#price-to").val());
+            });
+        });
+    </script>
+
+    <link href='https://fonts.googleapis.com/css?family=Kurale&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+
+
+    <title>Система выбора преподавателей</title>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+
+        }
+
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+
+        .dropdown-menu {
+            border-color: #000;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px black solid;
+            font: 12px sans-serif;
+        }
+
+        td {
+            border: 1px black solid;
+            text-align: left !important;
+        <!-- padding: 5 px;
+        --> <!-- border: none !important;
+        -->
+        }
+
+        .sort {
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .btn-default {
+
+        }
+
+        .sort-btn {
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+        .btn-group {
+            min-width: 160px;
+            /*max-width: 160px;*/
+
+        }
+
+        .btn-where {
+
+        }
+
+        body {
+            font-family: 'Kurale', serif;
+        }
+
+        .jumbotron {
+            /*font-family: 'Marck Script', cursive;*/
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .jumbotron .container {
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+
+        .table {
+            font-family: 'Helvetica', sans-serif;
+            font-weight: 400;
+            /*font-size: small;*/
+
+        }
+
+        .theadClass {
+            background-color: #F0F0F0;
+            /*text-align: center !important;*/
+        }
+
+        label {
+            font-weight: 400;
+        }
+
+        .sorttext {
+            padding-right: 10px;
+            font-size: 110%;
+        }
+
+        .form-control {
+            border-radius: 4px !important;
+            align: center;
+        }
+
+        .row {
+
+        }
+
+        .amount {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Система поиска</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="about">О системе</a></li>
+                <li><a href="contact">Связаться</a></li>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <h2>Система поиска преподавателей</h2>
+    </div>
+</div>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <div class="filter-btn">
+                <div class="btn-group-vertical" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspop="true" aria-expanded="false">
+                            Предмет
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Английский язык</a></li>
+                            <li><a href="#">Математика</a></li>
+                            <li><a href="#">Русский язык</a></li>
+                            <li><a href="#">Информатика</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="btn-group-vertical" role="group" aria-label="...">
+                <div class="btn-group btn-group-justified" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspop="true" aria-expanded="false">
+                        Район
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Все</a></li>
+                        <li><a href="#">Автово</a></li>
+                        <li><a href="#">Адмиралтейская</a></li>
+                        <li><a href="#">Академическая</a></li>
+                        <li><a href="#">Балтийская</a></li>
+                        <li><a href="#">Бухарестская</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>
+            <div class="btn-group-vertical" role="group" aria-label="...">
+                <div class="btn-group btn-group-justified" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspop="true" aria-expanded="false">
+                        Место проведения занятий
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">У себя</a></li>
+                        <li><a href="#">У преподавателя</a></li>
+                        <li><a href="#">Удалённо</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            </p>
+            <label for="amount">Стоимость занятия:</label>
+            <!--<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
+            </p>
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1">
+                    <div class="input-group">
+                        <input id="price-from" type="text" class="form-control" placeholder="От"
+                               aria-label="Стоимсоть от">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="input-group">
+                        <input id="price-to" type="text" class="form-control" placeholder="До"
+                               aria-label="Стоимость до">
+                    </div>
+                </div>
+            </div>
+            </p>
+            <div id="slider-range"></div>
+        </div>
+
+
+        <div class="col-sm-8 text-center">
+            <div class="sort">
+                <span class="sorttext">Сортировать по:</span>
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">Оценка системы</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">Рейтинг</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="optradio">Отзывы</label>
+                </div>
+                <div class="sort-btn">
+                    <button type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-sort" aria-label="sort"></span>
+                    </button>
+                </div>
+            </div>
+            <br>
+            {% if teachers %}
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-hover table-striped">
+                        <tbody>
+                        {% for teacher in teachers %}
+                            <tr>
+                                <td rowspan="2" colspan="3"
+                                    style="vertical-align: middle; background-color: #eee; font-size:15px; width:30%"><a
+                                        href="{{ teacher.Url }}" title="Открыть профиль">{{ teacher.Name }}</a></td>
+                                <td rowspan="1" colspan="1"
+                                    style="vertical-align: middle; text-align: center !important; background-color: #eee">
+                                    Рейтинг: <span style="font-size:15px">{{ teacher.Rating }}</span></td>
+                                <td rowspan="1" colspan="1"
+                                    style="vertical-align: middle; text-align: center !important; background-color: #eee">
+                                    Отзывы: <span style="font-size:15px">{{ teacher.Feedback }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="2"
+                                    style="vertical-align: middle; text-align: center !important; background-color: #eee">
+                                    Стоимость занятия: <span rowspan="1" colspan="2"
+                                                             style="font-size:15px">{{ teacher.Money }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="3" style="vertical-align: middle">Предмет:</td>
+                                <td rowspan="1" colspan="2"><span>{{ teacher.Subjects }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="3" style="vertical-align: middle">Район:</td>
+                                <td rowspan="1" colspan="2"><span>{{ teacher.Metro }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="3" style="vertical-align: middle">Место проведения занятий:
+                                </td>
+                                <td rowspan="1" colspan="2"><span>{{ teacher.ComeHome }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="3" style="vertical-align: middle">Статус:</td>
+                                <td rowspan="1" colspan="2"><span>{{ teacher.Status }}</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="5"
+                                    style="vertical-align: middle; text-align: right !important">Добавить в избранное:
+                                    <img type="button"
+                                         src="{% static 'images/favorites.png' %}"
+                                         width="20px"
+                                         title="Добавить в избранное"
+                                         onclick="add_to_favorites('{{ teacher.id }}')"
+                                         style="cursor: pointer"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="1" colspan="5" style="background-color: #ddd"></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-info">
+                    <p>Список пуст</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-2 sidenav" id="favorites">
+            {% if favorites > 0 %}
+                <p>В избранном: {{ favorites }}</p>
+            {% else %}
+                <p>Список избранных пуст</p>
+            {% endif %}
+            <a href="favorites">Перейти в список</a>
+        </div>
+    </div>
+</div>
+<footer class="container-fluid text-center">
+    <p>2016</p>
+</footer>
+<script type="text/javascript">
+    function add_to_favorites(id) {
+        $.ajax({
+            type: 'POST',
+            url: '/',
+            data: {
+                "TeacherID": id,
+                "csrfmiddlewaretoken": csrf,
+                "operationType": "add"
+            },
+            success: function (data) {
+                if (data.status == 0) {
+                    $.get("/", function (data, status) {
+                        $('#favorites').html($('#favorites', data).html());
+                    });
+                }
+            },
+            error: function (xhr, status, err) {
+            },
+            complete: function (xhr, status) {
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) c_end = document.cookie.length;
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken")
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

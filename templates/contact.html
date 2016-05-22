@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <!-- meta first -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">var csrf = "{{ csrf_token }}";</script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+            integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+    <link href='https://fonts.googleapis.com/css?family=Kurale&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+
+    <title>Contact page</title>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+
+        }
+
+        /* Move down content because we have a fixed navbar that is 50px tall */
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+
+        .dropdown-menu {
+            border-color: #000;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px black solid;
+            font: 12px sans-serif;
+        }
+
+        td {
+            border: 1px black solid;
+            padding: 5px;
+        }
+
+        .sort {
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .btn-default {
+
+        }
+
+        .sort-btn {
+            display: inline-block;
+            padding-left: 15px;
+        }
+
+        .btn-group {
+            min-width: 160px;
+            /*max-width: 160px;*/
+
+        }
+
+        .btn-where {
+
+        }
+
+        body {
+            font-family: 'Kurale', serif;
+        }
+
+        .jumbotron {
+            /*font-family: 'Marck Script', cursive;*/
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .jumbotron .container {
+            padding-top: 5px;
+            padding-bottom: 10px;
+        }
+
+        .table {
+            font-family: 'Helvetica', sans-serif;
+            font-weight: 400;
+            /*font-size: small;*/
+
+        }
+
+        .theadClass {
+            background-color: #F0F0F0;
+            /*text-align: center !important;*/
+        }
+
+        label {
+            font-weight: 400;
+        }
+
+        .sorttext {
+            padding-right: 10px;
+            font-size: 110%;
+        }
+
+        .form-control {
+            border-radius: 4px !important;
+            align: center;
+        }
+
+        .row {
+
+        }
+
+        .amount {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Система поиска</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">О системе</a></li>
+                <li><a href="">Связаться</a></li>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+</nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Система поиска преподавателей</h2>
+        </div>
+    </div>
+
+<div class="container-fluid text-center">
+
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+        <div class="col-sm-8 text-left">
+            <p>Возникли вопросы или замечания? Напишите нам!</p>
+            <p>systvibprep@gmail.com</p>
+        </div>
+        <div class="col-sm-2 sidenav">
+        </div>
+    </div>
+</div>
+<footer class="container-fluid text-center">
+    <p>2016</p>
+</footer>
+</body>
+</html>
