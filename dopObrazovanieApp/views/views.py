@@ -7,8 +7,22 @@ import json
 def homepage(request):
     if request.method == 'GET':
         args = {}
-        args["teachers"] = Teacher.objects.all()
+        sort = request.GET.get("SortField", None)
+        sort_direction = request.GET.get("SortDirection", "-")
+        filter_place = request.GET.get("FilterPlace", None)
+        filter_subject = request.GET.get("FilterSubjField", None)
+
+        teachers = Teacher.objects.all()
+        if filter_subject:
+            teachers = teachers.filter(Subjects__contains=filter_subject)
+        if filter_place:
+            teachers = teachers.filter(ComeHome__contains=filter_place)
+        if sort:
+            sort = sort_direction + sort
+            teachers = teachers.order_by(sort)
+        args["teachers"] = teachers
         args["favorites"] = Favorites.objects.all().count()
+        args["teachersNumber"] = Teacher.objects.all().count()
         return render_to_response('home.html', args, RequestContext(request))
     elif request.method == 'POST':
         teacher_id = int(request.POST.get("TeacherID", -1))
