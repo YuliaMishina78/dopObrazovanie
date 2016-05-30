@@ -76,6 +76,31 @@ function FilterSubject(sortsubject) {
     });
 }
 
+function FilterMetro(sortmetro) {
+    $.ajax({
+        type: 'GET',
+        url: '/',
+        data: {
+            "FilterMetroField": sortmetro
+        },
+        success: function(data){
+            $('div#teachers').
+        }
+    });
+}
+
+$('#filterSubmit').click(function(event){
+    $.ajax({
+        type: 'POST',
+        url:'/',
+        data: {
+            "FilterPlace":
+            "FilterSubjField":
+            "FilterMetroField":
+        }
+    })
+}
+
 $(document).ready(function () {
     function getCookie(c_name) {
         if (document.cookie.length > 0) {

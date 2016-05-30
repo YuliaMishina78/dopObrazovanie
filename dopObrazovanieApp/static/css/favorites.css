@@ -1,0 +1,59 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+
+}
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px black solid;
+    font: 12px sans-serif;
+}
+
+td {
+    border: 1px black solid;
+    text-align: left !important;
+<!-- padding: 5 px;
+--> <!-- border: none !important;
+-->
+}
+
+body {
+    font-family: 'Kurale', serif;
+}
+
+.jumbotron {
+    /*font-family: 'Marck Script', cursive;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.jumbotron .container {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.table {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 400;
+    /*font-size: small;*/
+
+}
+
+label {
+    font-weight: 400;
+}
