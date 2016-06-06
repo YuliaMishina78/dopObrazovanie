@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, HttpResponse
 from django.template import RequestContext
 from dopObrazovanieApp.models import Teacher, Favorites
@@ -9,14 +10,24 @@ def homepage(request):
         args = {}
         sort = request.GET.get("SortField", None)
         sort_direction = request.GET.get("SortDirection", "-")
+        filter_metro = request.GET.get("FilterMetroField", None)
         filter_place = request.GET.get("FilterPlace", None)
         filter_subject = request.GET.get("FilterSubjField", None)
 
+        if filter_metro == u"Все":
+            filter_metro = None
+        if filter_subject == u"Все":
+            filter_subject = None
+
         teachers = Teacher.objects.all()
-        if filter_subject:
-            teachers = teachers.filter(Subjects__contains=filter_subject)
+
+        if filter_metro:
+            teachers = teachers.filter(Metro__contains=filter_metro)
         if filter_place:
             teachers = teachers.filter(ComeHome__contains=filter_place)
+        if filter_subject:
+            teachers = teachers.filter(Subjects__contains=filter_subject)
+
         if sort:
             sort = sort_direction + sort
             teachers = teachers.order_by(sort)
@@ -41,11 +52,14 @@ def homepage(request):
     else:
         return HttpResponse(status=404)
 
+
 def contactpage(request):
     return render_to_response('contact.html')
 
+
 def aboutpage(request):
     return render_to_response('about.html')
+
 
 def favoritespage(request):
     args = {}

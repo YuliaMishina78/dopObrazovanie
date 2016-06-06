@@ -24,12 +24,14 @@ function add_to_favorites(id) {
     });
 }
 
-function filter_place(place) {
+$('#filterSubmit').click(function(){
     $.ajax({
         type: 'GET',
-        url: '/',
+        url:'/',
         data: {
-            "FilterPlace": place
+            "FilterMetroField": $('#metro').val(),
+            "FilterPlace": $('#place').val(),
+            "FilterSubjField": $('#subject').val(),
         },
         success: function (data) {
             $('div#teachers').html($('div#teachers', data).html());
@@ -39,7 +41,7 @@ function filter_place(place) {
         complete: function (xhr, status) {
         }
     });
-}
+});
 
 
 function SortTeachers(sortfield) {
@@ -59,47 +61,7 @@ function SortTeachers(sortfield) {
     });
 }
 
-function FilterSubject(sortsubject) {
-    $.ajax({
-        type: 'GET',
-        url: '/',
-        data: {
-            "FilterSubjField": sortsubject
-        },
-        success: function(data) {
-            $('div#teachers').html($('div#teachers', data).html());
-        },
-        error: function(xhr, status, err) {
-        },
-        complete: function(xhr, status) {
-        }
-    });
-}
 
-function FilterMetro(sortmetro) {
-    $.ajax({
-        type: 'GET',
-        url: '/',
-        data: {
-            "FilterMetroField": sortmetro
-        },
-        success: function(data){
-            $('div#teachers').
-        }
-    });
-}
-
-$('#filterSubmit').click(function(event){
-    $.ajax({
-        type: 'POST',
-        url:'/',
-        data: {
-            "FilterPlace":
-            "FilterSubjField":
-            "FilterMetroField":
-        }
-    })
-}
 
 $(document).ready(function () {
     function getCookie(c_name) {

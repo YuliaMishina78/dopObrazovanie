@@ -20,7 +20,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script type="text/javascript" src="{% static "js/home_head.js" %}"></script>
-
+    <script type="text/javascript" src="{% static "js/home_body.js" %}"></script>
     <link href='https://fonts.googleapis.com/css?family=Kurale&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Marck+Script&subset=latin,cyrillic' rel='stylesheet'
           type='text/css'>
@@ -164,11 +164,11 @@
             <div class="filter-btn">
                 <div style="text-align: left !important">Место проведения занятий:</div>
                 </p>
-                <select class="form-control" id="place">
-                    <option value='у себя'><a href="#">У себя</a></option>
-                    <option value='выезд на дом'><a href="#">Выезд на дом</a></option>
-                    <option value='удаленно'><a href="#">Удалённо</a></option>
-                </select>
+                    <select class="form-control" id="place">
+                        <option value='у себя'>У себя</option>
+                        <option value='выезд на дом'>Выезд на дом</option>
+                        <option value='удаленно'>Удалённо</option>
+                    </select>
             </div>
             </p>
             <div style="text-align: left !important">Стоимость занятия:</div>
@@ -177,23 +177,23 @@
 
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1">
-                    <div class="input-group">
+
                         <input id="price-from" type="text" class="form-control" placeholder="От"
                                aria-label="Стоимсоть от">
-                    </div>
+
                 </div>
                 <div class="col-lg-5">
-                    <div class="input-group">
+
                         <input id="price-to" type="text" class="form-control" placeholder="До"
                                aria-label="Стоимость до">
-                    </div>
+
                 </div>
             </div>
             </p>
             <div id="slider-range"></div>
             </p></p>
-               <div id="filterSubmit">
-                <button type="button" class="btn btn-default filtersAllButton">Подобрать</button>
+               <div>
+                <button type="button" class="btn btn-default filtersAllButton" id="filterSubmit">Подобрать</button>
             </div>
         </div>
 

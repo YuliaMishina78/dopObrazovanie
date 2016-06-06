@@ -108,7 +108,13 @@ label {
 
 .form-control {
     border-radius: 4px !important;
+    min-width: 70px !important;
 
+}
+
+.input-group {
+    min-width: 70px !important;
+    max-width: 100px !important;
 }
 
 .filter-btn {
@@ -128,3 +134,4 @@ label {
     background-color: #f0ad4e;
     border-color: #985f0d;
 }
+
